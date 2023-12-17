@@ -1,0 +1,43 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+
+// function declaration
+
+void  ReadVector(vector <int>&);
+void PrintVector(vector <int>&);
+
+int main() 
+{     
+
+    vector<int> vNumber;
+  ReadVector(vNumber);
+  PrintVector(vNumber);
+    
+   return 0;
+}
+
+// function Definition
+void  ReadVector(vector <int> &vNumber)
+{   char Again;
+    int Number;
+      do
+    {
+    printf("Please Enter The Number ? \n");
+    cin>>Number;    
+    vNumber.push_back(Number);
+    printf("Do you  want to add one more ?\n");
+    cin>>Again;
+    }
+    while(Again=='y'||Again=='Y');
+    
+}
+void PrintVector(vector <int> &vNumber)
+{
+    cout<<"Number Vector =";
+    for(int &Number:vNumber)
+    {
+        cout<<Number<<" ";
+    }
+    cout<<endl;
+}

@@ -1,0 +1,62 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int ReadPostiveNumber(string msg)
+{   int n;
+    do
+    {
+        cout <<msg<<endl;
+        cin>>n;
+    }
+    while (n<0);
+    return n;
+}
+
+bool Checkpass(string guesspass)
+{
+    return "AAF"==guesspass;
+}
+
+bool Print()
+{ string word="";
+int sum=0;
+    for(int i =65;i<=90;i++)
+    {
+        
+        for(int j =65;j<=90;j++)
+        {
+             for(int w=65;w<=90;w++)
+             {  sum +=1;
+                 word += char(i);
+                 word += char(j);
+                 word += char(w);
+                 if(Checkpass(word))
+                 {
+                      cout<<"This Trail Number "<<sum<<" , U get it and the Letter is "<<word<<endl;
+                        word="";
+                        return true;
+                 }
+                 else 
+                 {
+                 cout<<"This Trail Number "<<sum<<" And the Letter is "<<word<<endl;
+                   word="";
+                 }
+               
+            }
+                 }
+                
+                 
+                 word="";
+             }
+        }
+      
+
+
+int main() {
+    
+Print();
+
+
+    return 0;
+}

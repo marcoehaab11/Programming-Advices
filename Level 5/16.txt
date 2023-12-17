@@ -1,0 +1,43 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int ReadPostiveNumber(string msg)
+{   int n;
+    do
+    {
+        cout <<msg<<endl;
+        cin>>n;
+    }
+    while (n<0);
+    return n;
+}
+
+void Print()
+{ string word="";
+    for(int i =65;i<=90;i++)
+    {
+        
+        for(int j =65;j<=90;j++)
+        {
+             for(int w=65;w<=90;w++)
+             {
+                 word += char(i);
+                 word += char(j);
+                 word += char(w);
+                 cout<<word<<endl;
+                 word="";
+             }
+        }
+      
+      
+    }
+}
+
+int main() {
+    
+Print();
+
+
+    return 0;
+}

@@ -1,0 +1,37 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int ReadPostiveNumber(string msg)
+{   int n;
+    do
+    {
+        cout <<msg<<endl;
+        cin>>n;
+    }
+    while (n<0);
+    return n;
+}
+
+void Check (int n,short f)
+{  
+    int Remainder=0,sum=0;    
+   while(n>0)
+  {
+        Remainder=n%10;
+        n=n/10;
+        if (Remainder==f)
+        {sum +=1;}
+  }
+    
+      cout<<"Digit "<<f<< " Frequency is "<<sum<<" Times"<<endl;
+}
+
+int main() {
+    
+int number =ReadPostiveNumber("Enter Postive Number ?");
+short DigitToCheck=ReadPostiveNumber("Please enter one digit to check?");
+Check(number,DigitToCheck);
+
+    return 0;
+}

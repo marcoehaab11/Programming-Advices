@@ -1,0 +1,20 @@
+#include<iostream>
+using namespace std;
+// function declaration
+void PrintNumber();
+
+
+int main() 
+{     
+   auto x=10;
+   auto z=10.5;
+   auto w="Marco";
+   
+   cout<<x<<endl;
+   cout<<z<<endl;
+   cout<<w<<endl;
+   return 0;
+}
+
+// function Definition
+

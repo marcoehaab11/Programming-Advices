@@ -1,0 +1,43 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int ReadPostiveNumber(string msg)
+{   int n;
+    do
+    {
+        cout <<msg<<endl;
+        cin>>n;
+    }
+    while (n<0);
+    return n;
+}
+
+int ReverseNumber(int Number )
+{
+    int Reminder=0,Number2=0;
+    while(Number>0)
+    {
+    Reminder=Number%10;
+    Number=Number/10;
+    Number2=Number2*10+Reminder;
+    }
+    return Number2;
+}
+void PrintReminder(int n )
+{    int Reminder=0;
+    while(n>0)
+    {
+        Reminder=n%10;
+         n=n/10;
+         cout<<Reminder<<endl;
+    }
+}
+
+int main() {
+    
+PrintReminder(ReverseNumber(ReadPostiveNumber("Enter Postive Number ?")));
+
+
+    return 0;
+}

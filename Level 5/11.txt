@@ -1,0 +1,39 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int ReadPostiveNumber(string msg)
+{   int n;
+    do
+    {
+        cout <<msg<<endl;
+        cin>>n;
+    }
+    while (n<0);
+    return n;
+}
+
+int ReverseNumber(int Number )
+{
+    int Reminder=0,Number2=0;
+    while(Number>0)
+    {
+    Reminder=Number%10;
+    Number=Number/10;
+    Number2=Number2*10+Reminder;
+    }
+    return Number2;
+}
+void checkplando(int number)
+{    if(number==ReverseNumber(number))
+    {cout<<"This is a PlandoNumber";}
+    else {cout<<"This is Not a PlandoNumber";}
+}
+
+int main() {
+    
+checkplando(ReadPostiveNumber("Enter Postive Number ?"));
+
+
+    return 0;
+}

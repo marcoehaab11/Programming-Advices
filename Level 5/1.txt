@@ -1,0 +1,42 @@
+// Online C++ compiler to run C++ program online
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+void PrintTableHeader()
+{
+cout << "           Multipliaction Table From 1 to 10\n";
+cout<<"    ";
+for(int w=1;w<=10;w++)
+{
+    cout<<"\t"<<w;
+}
+cout <<"\n";
+}
+string ColumSperator(int i)
+{   if(i>=10)
+    return("  |");
+    else 
+    return("   |");
+    
+}
+void PrintMultiTable ()
+{   PrintTableHeader();
+    for(int i=1;i<=10;i++)
+    {   cout<<i<<ColumSperator(i);
+        for(int j=1;j<=10;j++)
+        {
+            cout<<"\t"<<i*j;
+        }
+        cout <<endl;
+    }
+}
+
+
+int main() {
+    
+PrintMultiTable();
+
+    return 0;
+}

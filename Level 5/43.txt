@@ -1,0 +1,150 @@
+ #include<iostream>
+using namespace std;
+enum enOddOrEven {Odd=1,Even=2};
+enum enPrimeOrNot{Prime=1,NotPrime=2};
+
+void FillArray(int arr[100], int& arrLength) 
+{   arrLength = 5;
+    arr[0] = 3;
+    arr[1] = 2; 
+    arr[2] = 10; 
+    arr[3] = 0;
+    arr[4] = 20;
+}
+
+void AddArrayElement(int arr[100],int& arrlength,int Number)
+{
+    arrlength++;
+    arr[arrlength-1]=Number;
+}
+
+bool IsNumberInArray(int Number,int arr[100],int& arrlength)
+{
+    for(int i =0;i<arrlength;i++)
+    {
+        if(arr[i]==Number)
+        {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+void CopyDistinctNumberToArray(int arrSource[100],int arrDistict[100],int arrlenSource,int& arrlenDistict)
+{
+    for(int i =0;i<arrlenSource;i++)
+    {
+        if(!IsNumberInArray(arrSource[i],arrDistict,arrlenDistict))
+        {
+            AddArrayElement(arrDistict,arrlenDistict,arrSource[i]);
+        }
+    }
+}
+
+int ReadData()
+{
+    int N;
+    do{
+        cout<<"Enter the Number Of Element ?\n";
+        cin>>N;
+        
+    }
+    while(N<0);
+    return N;
+}
+int RandomNumber(int From,int To)
+{
+    int RandomNum=rand()%(To-From+1) +From;
+    return RandomNum;
+}
+ void FillArrayWithRandomNumber(int arr[100],int arrlength)
+{
+     for(int i;i<arrlength;i++)
+     {
+         arr[i]=RandomNumber(1,100);
+     }
+ }
+  void PrintArr(int arr[100],int arrlength)
+{
+     for(int i=0;i<arrlength;i++)
+     {
+        cout<<arr[i]<<" ";
+     }
+ }
+ enOddOrEven CheckOddOrEven (int Number)
+{
+    if(Number % 2==0)
+    {
+        return enOddOrEven::Even;
+    }else
+    {
+        return enOddOrEven::Odd;
+        
+    }
+}
+
+enPrimeOrNot CheckPrimeOrNot (int Number)
+{   int m=(int) Number/2;
+    for(int i=2;i<m;i++)
+    {
+        if(Number % i == 0)
+        {
+            return enPrimeOrNot::NotPrime;
+        }
+    };
+     return enPrimeOrNot::Prime;
+}
+void AddArrayElement(int Number,int arr[100],int& arrlength)
+{
+    arrlength++;
+    arr[arrlength-1]=Number;
+}
+ void CopyArrayElement(int arr[100],int arr2[100],int arrlength,int& arr2length)
+{
+    for(int i=0;i<arrlength;i++)
+    {   if(CheckPrimeOrNot(arr[i])==enPrimeOrNot::Prime){
+        AddArrayElement(arr[i],arr2,arr2length);
+    }
+    }
+}
+
+bool CheckPlandrome (int arr[100] ,int arrLength)
+{
+    for(int i=0;i<arrLength;i++)
+    {   
+        if(arr[i]!=arr[arrLength-i-1])
+        {
+          
+            return false;
+        }
+    };
+    return true;
+    
+}
+
+int EvenCounter(int arr[100],int arrlength)
+{int counter;
+    for(int i=0;i<arrlength;i++)
+    {
+        if(CheckOddOrEven(arr[i])==enOddOrEven::Even)
+        {
+            counter++;
+        }
+    }
+    return counter;
+}
+
+
+int main() {
+ srand((unsigned)time(NULL));
+ 
+ int arr[100],arrl=0;
+
+FillArray(arr,arrl);
+
+ cout<<"The Org : \n";
+ PrintArr(arr,arrl);
+ cout<<"\n the Even is  :"<<EvenCounter(arr,arrl);
+ 
+    return 0;
+} 

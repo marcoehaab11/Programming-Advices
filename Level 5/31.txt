@@ -1,0 +1,149 @@
+#include <iostream>
+#include <string>
+#include<cstdlib>
+using namespace std;
+
+enum enCharType{SmallLetter=1,CapitalLetter=2,SpecialLetter=3,Digit=4};
+enum enPrimeNotPrime{Prime=1,NotPrime=2};
+
+
+int ReadPositiveNumber(string Message) {
+    int Number = 0;
+    do    {  
+        cout << Message << endl;   
+        cin >> Number; 
+        } 
+        while (Number <= 0); 
+return Number;
+}
+void swap (int& N1,int& N2)
+{
+    int temp;
+    temp=N1;
+    N1=N2;
+    N2=temp;
+}
+
+
+int RandomNumber(int From,int To)
+{
+    int RandomNum=rand()%(To-From+1) +From;
+    return RandomNum;
+}
+
+void ReadArr(int arr[100],int& arrlength)
+{   cout<<"Enter the length of arr? \n";
+    cin>>arrlength;
+    for(int i=0;i<arrlength;i++)
+    {
+        arr[i]=RandomNumber(1,100);
+    }
+}
+
+void PrintArr(int arr[100],int arrlength)
+{
+    for(int i =0;i<arrlength;i++)
+    {
+        cout<<arr[i]<<" ";
+    }
+}
+
+int SumArr(int arr[100],int arrlength)
+{   int sum=0;
+    for(int i =0;i<arrlength;i++)
+    {
+        sum+=arr[i];
+    }
+    return sum;
+}
+
+int AverageArr (int arr[100],int arrlength)
+{
+    return (float)SumArr(arr,arrlength)/arrlength;
+}
+
+
+void CopyArr (int arr1[100],int arr2[100],int arrlength)
+{
+    for(int i =0;i<arrlength;i++)
+    {
+       arr2[i]=arr1[i];
+    }
+}
+
+enPrimeNotPrime CheckPrime(int Number)
+{
+    
+    for(int i =2;i<=Number;i++)
+    { cout<<"sdgsd"<<endl;
+        if (Number % i==0)
+        {
+            return enPrimeNotPrime::NotPrime;
+          
+        }
+    }
+
+    return enPrimeNotPrime::Prime;
+
+}
+
+void CopyPrimeOnly(int arr1[100],int  arr2[100],int arrlength,int& arr2length)
+{   
+    int Counter=0;
+    for(int i=0;i<arrlength;i++)
+    {
+        if(CheckPrime(arr1[i])==enPrimeNotPrime::Prime)
+        { 
+            arr2[Counter]=arr1[i];
+            Counter++;
+        }
+    }
+    arr2length=Counter;
+}
+
+
+void SumArr (int arr[100],int arr2[100],int arrsum[100],int arrlength)
+{
+    for(int i =0;i<arrlength;i++)
+    {
+        arrsum[i]=arr[i]+arr2[i];
+    }
+}
+
+void ShuffleArray(int arr[100],int arrlength)
+{
+    for(int i =0;i<arrlength;i++)
+    {
+        swap(arr[RandomNumber(1,arrlength)-1],arr[RandomNumber(1,arrlength)-1]);
+    }
+}
+
+void FillArrayWith1toN(int arr[100],int arrlength)
+{
+    for(int i=0;i<arrlength;i++)
+    {
+        arr[i]=i+1;
+    }
+}
+
+
+
+
+
+
+
+
+int main() {
+srand((unsigned)time(NULL));
+int arr[100],arr2[100];
+int arrlength = ReadPositiveNumber("Enter The Number of Elment ? \n");
+FillArrayWith1toN(arr,arrlength);
+
+cout<<"befor shuffle : \n";
+PrintArr(arr,arrlength);
+cout<<endl;
+cout<<"after shuffle : \n";
+ShuffleArray(arr,arrlength);
+PrintArr(arr,arrlength);
+return 0;
+}

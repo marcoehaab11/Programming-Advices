@@ -1,0 +1,28 @@
+#include<iostream>
+using namespace std;
+// function declaration
+
+
+
+int main() 
+{     
+    char Name[]="Marco Ehab";
+    char Jop[]="Programmer";
+    
+    printf("Hi %s ,How are you ?\n ",Name);
+    printf("My Jop is %s \n",Jop);
+    
+    char c='S';
+    
+    printf("Width of c : %*c \n",1,c);
+    printf("Width of c : %*c \n",2,c);
+    printf("Width of c : %*c \n",3,c);
+    
+    
+    
+    
+   return 0;
+}
+
+// function Definition
+

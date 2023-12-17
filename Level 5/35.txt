@@ -1,0 +1,207 @@
+#include <iostream>
+#include <string>
+#include<cstdlib>
+using namespace std;
+
+enum enCharType{SmallLetter=1,CapitalLetter=2,SpecialLetter=3,Digit=4};
+enum enPrimeNotPrime{Prime=1,NotPrime=2};
+
+int RandomNumber(int From,int To)
+{
+    int RandomNum=rand()%(To-From+1) +From;
+    return RandomNum;
+}
+char RandomCharacher(enCharType CharType)
+{
+    
+    switch(CharType)
+    {
+    case enCharType::SmallLetter:
+    {
+        return char(RandomNumber(97,122));
+        break;
+    }
+    case enCharType::CapitalLetter:
+    {
+        return char(RandomNumber(65,90));
+        break;
+    }
+    case enCharType::SpecialLetter:
+    {
+         return char(RandomNumber(33,47));
+        break;
+    }
+        case enCharType::Digit:
+    {
+         return char(RandomNumber(48,57));
+        break;
+    }
+    }
+}        
+string GenrateWord(enCharType CharType,short length)
+{   string word="";
+    for(int i =1;i<=length;i++)
+    {
+        word+=RandomCharacher(CharType);
+    }
+    return word;
+}
+string GenrateKey()
+{   
+    string key="";
+    key=GenrateWord(enCharType::CapitalLetter,4)+"-";
+    key+=GenrateWord(enCharType::CapitalLetter,4)+"-";
+    key+=GenrateWord(enCharType::CapitalLetter,4)+"-";
+    key+=GenrateWord(enCharType::CapitalLetter,4);
+    return key;
+}
+void GeneationKeys(short NumberOfKeys)
+{
+    for(int i=1;i<=NumberOfKeys;i++)
+    {
+        cout<<"Key ["<<i<<"] : "<<GenrateKey()<<endl;
+    }
+    
+}
+int ReadPositiveNumber(string Message) {
+    int Number = 0;
+    do    {  
+        cout << Message << endl;   
+        cin >> Number; 
+        } 
+        while (Number <= 0); 
+return Number;
+}
+void swap (int& N1,int& N2)
+{
+    int temp;
+    temp=N1;
+    N1=N2;
+    N2=temp;
+}
+void FillArrayWithRandom(int arr[100],int arrlength)
+{   
+    for(int i=0;i<arrlength;i++)
+    {
+        arr[i]=RandomNumber(1,100);
+    }
+}
+void PrintArr(int arr[100],int arrlength)
+{
+    for(int i =0;i<arrlength;i++)
+    {
+        cout<<arr[i]<<"\n";
+        
+    }
+}
+int SumArr(int arr[100],int arrlength)
+{   int sum=0;
+    for(int i =0;i<arrlength;i++)
+    {
+        sum+=arr[i];
+    }
+    return sum;
+}
+int AverageArr (int arr[100],int arrlength)
+{
+    return (float)SumArr(arr,arrlength)/arrlength;
+}
+void CopyArr (int arr1[100],int arr2[100],int arrlength)
+{
+    for(int i =0;i<arrlength;i++)
+    {
+       arr2[i]=arr1[i];
+    }
+}
+enPrimeNotPrime CheckPrime(int Number)
+{
+    
+    for(int i =2;i<=Number;i++)
+    { cout<<"sdgsd"<<endl;
+        if (Number % i==0)
+        {
+            return enPrimeNotPrime::NotPrime;
+          
+        }
+    }
+
+    return enPrimeNotPrime::Prime;
+
+}
+void CopyPrimeOnly(int arr1[100],int  arr2[100],int arrlength,int& arr2length)
+{   
+    int Counter=0;
+    for(int i=0;i<arrlength;i++)
+    {
+        if(CheckPrime(arr1[i])==enPrimeNotPrime::Prime)
+        { 
+            arr2[Counter]=arr1[i];
+            Counter++;
+        }
+    }
+    arr2length=Counter;
+}
+void SumArr (int arr[100],int arr2[100],int arrsum[100],int arrlength)
+{
+    for(int i =0;i<arrlength;i++)
+    {
+        arrsum[i]=arr[i]+arr2[i];
+    }
+}
+void ShuffleArray(int arr[100],int arrlength)
+{
+    for(int i =0;i<arrlength;i++)
+    {
+        swap(arr[RandomNumber(1,arrlength)-1],arr[RandomNumber(1,arrlength)-1]);
+    }
+}
+void FillArrayWith1toN(int arr[100],int arrlength)
+{
+    for(int i=0;i<arrlength;i++)
+    {
+        arr[i]=i+1;
+    }
+}
+void CopyArrayInReverseOrder(int arr[100],int arr2[100],int arrlength)
+{
+    for(int i =0;i<arrlength;i++)
+    {
+        arr2[i]=arr[arrlength-1-i];
+    }
+}
+void ArrayofKey(string arr[100],int arrlength)
+{
+    for(int i=0;i<arrlength;i++)
+    {
+        arr[i]=GenrateKey();
+    }
+}
+
+void SearchInArray(int arr[100],int arrlength,int TheNumber)
+{   int counter=0;
+    for(int i=0;i<arrlength;i++)
+    {
+        if(arr[i]==TheNumber)
+        {   cout<<"yessssssssss its found \n";
+        }
+    }
+    if(counter==0)
+    {
+        cout<<"Nooooooooo Sorry \n";
+    }
+}
+
+int main() {
+srand((unsigned)time(NULL));
+int arr[100];
+int arrlength = ReadPositiveNumber("Enter The Number of Elment ? \n");
+int thenumber = ReadPositiveNumber("Enter The Number you want to seach ? \n");
+cout<<"Print Arr : \n";
+FillArrayWithRandom(arr,arrlength);
+PrintArr(arr,arrlength);
+SearchInArray(arr,arrlength,thenumber);
+
+
+
+return 0;
+}

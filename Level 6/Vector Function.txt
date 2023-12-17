@@ -1,0 +1,54 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+
+
+
+void PrintVector(  vector <stEmployee> &Employyys)
+{
+        for(stEmployee& Emp : Employyys)
+    {
+        cout<<Emp.FirstName<<"\n ";
+        cout<<Emp.LastName<<"\n ";
+        cout<<Emp.Salary<<"\n ";
+        
+    }
+    cout<<endl;
+}
+int main() 
+{  vector <int> vNumbers;   
+vNumbers.push_back(10); 
+vNumbers.push_back(20);   
+vNumbers.push_back(30);   
+vNumbers.push_back(40);   
+vNumbers.push_back(50);   
+vNumbers.pop_back();   
+vNumbers.pop_back();   
+vNumbers.pop_back();    
+vNumbers.pop_back();    
+vNumbers.pop_back();    
+cout << "Numbers Vector: \n\n"; 
+
+///to konw the size of vector
+vNumbers.siz();
+//ask if vector is empty
+vNumbers.empty();
+//remove all element in vector
+vNumbers.clear();
+//first element
+vNumbers.front();
+//last element
+vNumbers.back();
+//check overall siza of a vector
+vNumbers.capacity();
+
+// ranged loopfor 
+(int & Number : vNumbers) {  
+    cout << Number << endl;   
+    }     cout << endl; return 0; } 
+
+
+   return 0;
+}
+
+// function Definition

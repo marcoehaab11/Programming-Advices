@@ -1,0 +1,45 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int ReadPostiveNumber(string msg)
+{   int n;
+    do
+    {
+        cout <<msg<<endl;
+        cin>>n;
+    }
+    while (n<0);
+    return n;
+}
+
+int Check (int n,short f)
+{  
+    int Remainder=0,sum=0;    
+   while(n>0)
+  {
+        Remainder=n%10;
+        n=n/10;
+        if (Remainder==f)
+        {sum +=1;}
+  }
+    return sum;
+}
+void PrintTheNumberofDigits(int number)
+{
+    for(int i=1;i<10;i++)
+    {
+        if(Check(number,i)>0)
+        {
+             cout << "Digit " << i << " Frequencey is "                << Check(number,i) << " Time(s).\n"; 
+        }
+    }
+}
+
+int main() {
+    
+PrintTheNumberofDigits(ReadPostiveNumber("Enter Postive Number ?"));
+
+
+    return 0;
+}

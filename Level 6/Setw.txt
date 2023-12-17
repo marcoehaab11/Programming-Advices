@@ -1,0 +1,19 @@
+#include<iostream>
+#include<iomanip>
+using namespace std;
+// function declaration
+
+
+
+int main() 
+{     
+    
+    cout<<setw(9)<<"C102"<<"|"<<setw(25)<<"Computer Sceince"<<"|"<<setw(9)<<"90 min"<<"| \n";
+    cout<<setw(9)<<"C105"<<"|"<<setw(25)<<"Information Test"<<"|"<<setw(9)<<"23 min"<<"|\n";
+    cout<<setw(9)<<"C144"<<"|"<<setw(25)<<"System Bulider"<<"|"<<setw(9)<<"73 min"<<"|";
+    
+   return 0;
+}
+
+// function Definition
+

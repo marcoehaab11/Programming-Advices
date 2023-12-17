@@ -1,0 +1,77 @@
+ #include<iostream>
+using namespace std;
+enum OddOrEven {Odd=1,Even=2};
+
+int ReadData()
+{
+    int N;
+    do{
+        cout<<"Enter the Number Of Element ?\n";
+        cin>>N;
+        
+    }
+    while(N<0);
+    return N;
+}
+int RandomNumber(int From,int To)
+{
+    int RandomNum=rand()%(To-From+1) +From;
+    return RandomNum;
+}
+ void FillArrayWithRandomNumber(int arr[100],int arrlength)
+{
+     for(int i;i<arrlength;i++)
+     {
+         arr[i]=RandomNumber(1,100);
+     }
+ }
+  void PrintArr(int arr[100],int arrlength)
+{
+     for(int i;i<arrlength;i++)
+     {
+        cout<<arr[i]<<" ";
+     }
+ }
+ OddOrEven CheckOddOrEven (int Number)
+{
+    if(Number % 2==0)
+    {
+        return OddOrEven::Even;
+    }else
+    {
+        return OddOrEven::Odd;
+        
+    }
+}
+void AddArrayElement(int Number,int arr[100],int& arrlength)
+{
+    arrlength++;
+    arr[arrlength-1]=Number;
+}
+ void CopyArrayElement(int arr[100],int arr2[100],int arrlength,int& arr2length)
+{
+    for(int i=0;i<arrlength;i++)
+    {   if(CheckOddOrEven(arr[i])==OddOrEven::Odd){
+        AddArrayElement(arr[i],arr2,arr2length);
+    }
+    }
+}
+
+
+
+
+
+int main() {
+ srand((unsigned)time(NULL));
+ 
+ int arr[100],arr2[100],arrl=0,arr2l=0;
+ arrl=ReadData();
+ FillArrayWithRandomNumber(arr,arrl);
+ CopyArrayElement(arr,arr2,arrl,arr2l);
+ cout<<"The Org : \n";
+ PrintArr(arr,arrl);
+ cout<<"\n";
+ cout<<"The Copy : \n";
+ PrintArr(arr2,arr2l);
+    return 0;
+} 

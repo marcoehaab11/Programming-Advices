@@ -1,0 +1,123 @@
+#include <iostream>
+#include <string>
+#include<cstdlib>
+using namespace std;
+
+enum enCharType{SmallLetter=1,CapitalLetter=2,SpecialLetter=3,Digit=4};
+enum enPrimeNotPrime{Prime=1,NotPrime=2};
+
+
+int RandomNumber(int From,int To)
+{
+    int RandomNum=rand()%(To-From+1) +From;
+    return RandomNum;
+}
+
+void ReadArr(int arr[100],int& arrlength)
+{   cout<<"Enter the length of arr? \n";
+    cin>>arrlength;
+    for(int i=0;i<arrlength;i++)
+    {
+        arr[i]=RandomNumber(1,100);
+    }
+}
+
+void PrintArr(int arr[100],int arrlength)
+{
+    for(int i =0;i<arrlength;i++)
+    {
+        cout<<arr[i]<<" ";
+    }
+}
+
+int SumArr(int arr[100],int arrlength)
+{   int sum=0;
+    for(int i =0;i<arrlength;i++)
+    {
+        sum+=arr[i];
+    }
+    return sum;
+}
+
+int AverageArr (int arr[100],int arrlength)
+{
+    return (float)SumArr(arr,arrlength)/arrlength;
+}
+
+
+void CopyArr (int arr1[100],int arr2[100],int arrlength)
+{
+    for(int i =0;i<arrlength;i++)
+    {
+       arr2[i]=arr1[i];
+    }
+}
+
+enPrimeNotPrime CheckPrime(int Number)
+{
+    
+    for(int i =2;i<=Number;i++)
+    { cout<<"sdgsd"<<endl;
+        if (Number % i==0)
+        {
+            return enPrimeNotPrime::NotPrime;
+          
+        }
+    }
+
+    return enPrimeNotPrime::Prime;
+
+}
+
+void CopyPrimeOnly(int arr1[100],int  arr2[100],int arrlength,int& arr2length)
+{   
+    int Counter=0;
+    for(int i=0;i<arrlength;i++)
+    {
+        if(CheckPrime(arr1[i])==enPrimeNotPrime::Prime)
+        { 
+            arr2[Counter]=arr1[i];
+            Counter++;
+        }
+    }
+    arr2length=Counter;
+}
+
+
+void SumArr (int arr[100],int arr2[100],int arrsum[100],int arrlength)
+{
+    for(int i =0;i<arrlength;i++)
+    {
+        arrsum[i]=arr[i]+arr2[i];
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+int main() {
+srand((unsigned)time(NULL));
+int arr1[100],arr2[100],arrsum[100],arrlength=0,arr2length=0;
+ReadArr(arr1,arrlength);
+ReadArr(arr2,arr2length);
+SumArr(arr1,arr2,arrsum,arrlength);
+cout<<endl;
+cout<<"The First Arr is :"<<"\n";
+PrintArr(arr1,arrlength);
+cout<<endl;
+cout<<"The Second Arr is :"<<"\n";
+PrintArr(arr2,arrlength);
+cout<<endl;
+cout<<"The Sum Arr is :"<<"\n";
+PrintArr(arrsum,arrlength);
+
+return 0;
+}

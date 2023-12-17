@@ -1,0 +1,36 @@
+#include<iostream>
+using namespace std;
+// function declaration
+
+
+
+int main() 
+{     int Page=1,Total=10;
+    
+    printf("The Number of Page is :%d \n",Page);
+    printf("The Number of Page is :%d from %d \n",Page,Total);
+    
+    printf("The Sum of %d and %d equal = %d \n",Page,Total,Page+Total);
+ 
+ 
+    float PI=3.14159;
+    
+    printf("PI = %.*f \n",1,PI);
+    printf("PI = %.*f \n",2,PI);
+    printf("PI = %.*f \n",3,PI);
+    printf("PI = %.*f \n",4,PI);
+    
+    
+    float x=7,y=9;
+    printf("The Float Division  is  %.3f / %.3f = %.3f \n",x,y,x/y);
+    
+    double d=12.45;
+    
+    printf("The Double value is : %.3f  \n",d);
+    printf("The Double value is : %.4f \n",d);
+    
+    
+   return 0;
+}
+
+

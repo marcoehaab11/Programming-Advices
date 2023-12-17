@@ -1,0 +1,35 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int ReadPostiveNumber(string msg)
+{   int n;
+    do
+    {
+        cout <<msg<<endl;
+        cin>>n;
+    }
+    while (n<0);
+    return n;
+}
+
+void PrintDigits (int n)
+{  
+    int Remainder=0,sum=0;    
+    while(n>0)
+    {
+        Remainder=n %10;
+        n=n/10;
+        sum+=Remainder;
+        
+    }
+      cout<<sum<<endl;
+}
+
+
+int main() {
+    
+PrintDigits(ReadPostiveNumber("Enter Postive Number ?"));
+
+    return 0;
+}

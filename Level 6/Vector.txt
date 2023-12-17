@@ -1,0 +1,27 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+
+// function declaration
+
+
+int main() 
+{     
+
+    vector<int> vNumber={10,20,30,40,50};
+    
+    cout<<"Number Vector =";
+    
+    //ref Important for speed
+    for(int &Number:vNumber)
+    {
+        cout<<Number<<" ";
+    }
+    cout<<endl;
+    
+    
+   return 0;
+}
+
+// function Definition
+

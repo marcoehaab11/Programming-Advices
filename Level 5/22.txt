@@ -1,0 +1,60 @@
+#include <iostream>
+#include <string>
+#include<cstdlib>
+using namespace std;
+
+enum enCharType{SmallLetter=1,CapitalLetter=2,SpecialLetter=3,Digit=4};
+
+int ReadPositiveNumber(string msg)
+{
+    int n;
+    do
+    {
+        cout<<msg;
+        cin>>n;
+    }
+    while(n<0);
+    return n;
+        
+}
+
+void ReadArr(int arr[100],int& arrlength)
+{   cout<<"Enter the length of arr? \n";
+    cin>>arrlength;
+    for(int i=0;i<arrlength;i++)
+    {
+        cout<<"Enter the Element ["<<i<<"]"<<endl;
+        cin>>arr[i];
+    }
+}
+void PrintArr(int arr[100],int arrlength)
+{
+    for(int i =0;i<arrlength;i++)
+    {
+        cout<<arr[i]<<" ";
+    }
+}
+
+int TimeTOCheck(int arr[100],int arrlength,int TheNumber)
+{   int sum=0;
+    for(int i=0;i<arrlength;i++)
+    {
+       if(TheNumber==arr[i])
+       {sum+=1;}
+    }
+    return sum;
+}
+
+int main() {
+int arr[100],arrlength=0,NumbertoCheck=0;
+ReadArr(arr,arrlength);
+NumbertoCheck=ReadPositiveNumber("Pls Enter The Number You want to Search ?\n");
+
+cout<<"The Orginal Arr is :"<<"\n";
+PrintArr(arr,arrlength);
+cout<<endl;
+cout <<"The Number of "<<NumbertoCheck<<" Have "<<TimeTOCheck(arr,arrlength,NumbertoCheck)<<" Times \n";
+
+
+return 0;
+}

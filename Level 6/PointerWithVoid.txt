@@ -1,0 +1,25 @@
+ #include <iostream>
+using namespace std;
+
+
+
+int main() {
+    
+    void *p;
+    
+    int x=10;
+    float f=10.5;
+    
+    p=&x;
+    cout<<p<<endl;
+    cout<<*(static_cast<int*>(p))<<endl;
+    
+    p=&f;
+    cout<<p<<endl;
+    cout<<*(static_cast<float*>(p))<<endl;
+    
+    
+    
+    
+    return 0;
+}

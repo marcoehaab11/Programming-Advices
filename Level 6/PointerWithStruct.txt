@@ -1,0 +1,23 @@
+ #include <iostream>
+using namespace std;
+
+struct stEmployee
+{
+    string Name;
+    float Salary;
+};
+
+int main() {
+    
+    stEmployee Emp , *p;
+    
+    Emp.Name="Marco Ehab";
+    Emp.Salary=25000;
+    
+    p=&Emp;
+    
+    cout<< p->Name <<endl;
+    cout<< p->Salary;
+
+    return 0;
+}

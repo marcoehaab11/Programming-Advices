@@ -1,0 +1,34 @@
+ #include <iostream>
+using namespace std;
+
+
+
+int main() {
+    
+   int *ptrNum,*ptrArr;
+    ptrNum=new int; 
+   cout<<"Enter the Number of  Student ? \n";
+   cin>>*ptrNum;
+   
+   ptrArr=new int[*ptrNum];
+   
+   for (short i=0;i<*ptrNum;i++)
+   {
+       printf("Studen [%d] degree : ",i+1);
+         cin>>*(ptrArr+i);
+   }
+   
+    for (short i=0;i<*ptrNum;i++)
+   {
+        printf("Studen [%d] = %d \n",i+1,*(ptrArr+i));
+   }
+   
+
+
+    delete ptrNum;
+    delete ptrArr;
+    
+
+
+    return 0;
+}

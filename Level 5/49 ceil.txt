@@ -1,0 +1,56 @@
+ #include<iostream>
+using namespace std;
+#include <cmath>
+
+float ReadData()
+{
+    float N;
+    do{
+        cout<<"Enter the Number Of Element ?\n";
+        cin>>N;
+        
+    }
+    while(false);
+    return N;
+}
+int Myabs (int Number)
+{
+    return Number*-1;
+}
+
+float GetFraction(float Number,float IntPart)
+{
+    return (Number-IntPart);
+}
+
+int myceil(float Number)
+{
+    float IntPart =(int)Number;
+   
+    float Fraction=GetFraction(Number,IntPart);
+    if(abs(Fraction)>0)
+    {
+        if(Number>0)
+        { 
+            return ++IntPart;
+        }
+        else
+        {
+            return IntPart;
+        }
+    }
+   
+    
+}
+
+
+
+int main() {
+ srand((unsigned)time(NULL));
+ 
+ float Number=0;
+Number=ReadData();
+cout<<"My Result :"<<myceil(Number)<<"\n";
+ 
+    return 0;
+} 

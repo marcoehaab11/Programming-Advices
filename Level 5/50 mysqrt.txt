@@ -1,0 +1,39 @@
+ #include<iostream>
+using namespace std;
+#include <cmath>
+
+float ReadData()
+{
+    float N;
+    do{
+        cout<<"Enter the Number Of Element ?\n";
+        cin>>N;
+        
+    }
+    while(false);
+    return N;
+}
+int Myabs (int Number)
+{
+    return Number*-1;
+}
+
+float GetFraction(float Number,float IntPart)
+{
+    return (Number-IntPart);
+}
+
+int MySqrt(float Number)
+{
+    return pow(Number,0.5);
+}
+
+int main() {
+ srand((unsigned)time(NULL));
+ 
+ float Number=0;
+Number=ReadData();
+cout<<"My Result :"<<MySqrt(Number)<<"\n";
+ 
+    return 0;
+} 

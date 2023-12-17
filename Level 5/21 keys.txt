@@ -1,0 +1,88 @@
+#include <iostream>
+#include <string>
+#include<cstdlib>
+using namespace std;
+
+enum enCharType{SmallLetter=1,CapitalLetter=2,SpecialLetter=3,Digit=4};
+
+int ReadPositiveNumber(string msg)
+{
+    int n;
+    do
+    {
+        cout<<msg;
+        cin>>n;
+    }
+    while(n<0);
+    return n;
+        
+}
+int RandomNumber(int From,int To)
+{
+    int RandomNum=rand()%(To-From+1) +From;
+    return RandomNum;
+}
+
+char RandomCharacher(enCharType CharType)
+{
+    
+    switch(CharType)
+    {
+    case enCharType::SmallLetter:
+    {
+        return char(RandomNumber(97,122));
+        break;
+    }
+    case enCharType::CapitalLetter:
+    {
+        return char(RandomNumber(65,90));
+        break;
+    }
+    case enCharType::SpecialLetter:
+    {
+         return char(RandomNumber(33,47));
+        break;
+    }
+        case enCharType::Digit:
+    {
+         return char(RandomNumber(48,57));
+        break;
+    }
+    }
+}        
+ 
+    
+string GenrateWord(enCharType CharType,short length)
+{   string word="";
+    for(int i =1;i<=length;i++)
+    {
+        word+=RandomCharacher(CharType);
+    }
+    return word;
+}
+string GenrateKey()
+{   
+    string key="";
+    key=GenrateWord(enCharType::CapitalLetter,4)+"-";
+    key+=GenrateWord(enCharType::CapitalLetter,4)+"-";
+    key+=GenrateWord(enCharType::CapitalLetter,4)+"-";
+    key+=GenrateWord(enCharType::CapitalLetter,4);
+    return key;
+}
+
+void GeneationKeys(short NumberOfKeys)
+{
+    for(int i=1;i<=NumberOfKeys;i++)
+    {
+        cout<<"Key ["<<i<<"] : "<<GenrateKey()<<endl;
+    }
+    
+}
+
+
+int main() {
+srand((unsigned)time(NULL));
+GeneationKeys(ReadPositiveNumber("How many keys do you want ?\n"));
+
+return 0;
+}

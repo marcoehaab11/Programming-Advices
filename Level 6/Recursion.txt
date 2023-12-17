@@ -1,0 +1,46 @@
+#include<iostream>
+using namespace std;
+// function declaration
+void PrintNumber(int, int);
+void PrintNumberRevers(int, int);
+int PowerNumber(int ,int );
+int main() 
+{     
+   cout<<PowerNumber(2,3);
+   return 0;
+}
+
+// function Definition
+void PrintNumber(int N, int M)
+{   
+   if (N<=M)
+   {
+        cout<<N<<endl;
+        PrintNumber(N+1,M);
+        
+   };
+    
+} 
+void PrintNumberRevers(int N, int M)
+{   
+   if (N<=M)
+   {
+        cout<<M<<endl;
+        PrintNumberRevers(N,M-1);
+        
+   };
+    
+} 
+
+int PowerNumber(int N,int P)
+{   
+    if(P==0)
+    {
+        return 1;
+        
+    }
+    else
+    {   
+        return (N*PowerNumber(N,P-1));
+    }
+}

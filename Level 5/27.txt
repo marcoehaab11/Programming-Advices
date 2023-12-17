@@ -1,0 +1,58 @@
+#include <iostream>
+#include <string>
+#include<cstdlib>
+using namespace std;
+
+enum enCharType{SmallLetter=1,CapitalLetter=2,SpecialLetter=3,Digit=4};
+
+int RandomNumber(int From,int To)
+{
+    int RandomNum=rand()%(To-From+1) +From;
+    return RandomNum;
+}
+
+void ReadArr(int arr[100],int& arrlength)
+{   cout<<"Enter the length of arr? \n";
+    cin>>arrlength;
+    for(int i=0;i<arrlength;i++)
+    {
+        arr[i]=RandomNumber(1,100);
+    }
+}
+void PrintArr(int arr[100],int arrlength)
+{
+    for(int i =0;i<arrlength;i++)
+    {
+        cout<<arr[i]<<" ";
+    }
+}
+
+int SumArr(int arr[100],int arrlength)
+{   int sum=0;
+    for(int i =0;i<arrlength;i++)
+    {
+        sum+=arr[i];
+    }
+    return sum;
+}
+int AverageArr (int arr[100],int arrlength)
+
+{
+    return (float)SumArr(arr,arrlength)/arrlength;
+}
+
+
+
+int main() {
+srand((unsigned)time(NULL));
+int arr[100],arrlength=0;
+ReadArr(arr,arrlength);
+
+cout<<"The Arr is :"<<"\n";
+PrintArr(arr,arrlength);
+cout<<endl;
+cout<<"The Average:"<<AverageArr(arr,arrlength);
+
+
+return 0;
+}

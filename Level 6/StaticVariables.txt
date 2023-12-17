@@ -1,0 +1,22 @@
+#include<iostream>
+using namespace std;
+// function declaration
+void PrintNumber();
+
+
+int main() 
+{     
+    PrintNumber();
+    PrintNumber();
+    PrintNumber();
+   return 0;
+}
+
+// function Definition
+void PrintNumber()
+{   
+  static int N=1;
+  cout<<N<<endl;
+  N++;
+    
+} 
