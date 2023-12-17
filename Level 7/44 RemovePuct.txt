@@ -1,0 +1,27 @@
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+
+
+string RemovePuct(string str)
+{   string s="";
+    for(int i=0;i<str.length();i++)
+    {
+        if(!ispunct(str[i]))
+        {
+            s +=str[i];
+        }
+        
+    }
+    return s; 
+}
+
+
+int main() {
+  
+   string Words="marco ,,ehab farouk";
+  cout<<RemovePuct(Words);
+   
+    return 0;
+}

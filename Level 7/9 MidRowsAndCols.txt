@@ -1,0 +1,70 @@
+#include <iostream>
+#include <string>
+#include<iomanip>
+using namespace std;
+
+
+int RandomNumber(int From,int To)
+{
+    int RandomNum=rand()%(To-From+1) +From;
+    return RandomNum;
+}
+
+void FillMatrixWithRandom(int arr[3][3])
+{
+    for(short i=0;i<3;i++)
+    {
+        for(short j=0;j<3;j++)
+        {
+            arr[i][j]=RandomNumber(1,10);
+        }
+    }
+}
+
+void PrintMatrix(int arr[3][3])
+{   cout<<"The Matrix : \n";
+    for(short i=0;i<3;i++)
+    {
+        for(short j=0;j<3;j++)
+        {   
+            printf("          %0*d",2,arr[i][j]);
+        }
+        cout<<endl;
+    }
+}
+void Midcols(int arr[3][3],int rows ,int cols)
+{   short mid=cols/2;
+    cout<<"The mid cols is :";
+    for(int i=0;i<rows;i++)
+    {
+     printf("%0*d ",2,arr[i][mid]);
+    
+    }
+    cout<<endl;
+}
+void MidRows(int arr[3][3],int rows ,int cols)
+{   short mid=rows/2;
+    cout<<"The mid Rows is :";
+    for(int i=0;i<cols;i++)
+    {
+     printf("%0*d ",2,arr[mid][i]);
+    
+    }cout<<endl;
+}
+
+
+int main() {
+srand((unsigned)time(NULL));
+
+int arr[3][3],arr2[3][3],arrMult[3][3];
+
+FillMatrixWithRandom(arr);
+PrintMatrix(arr);
+
+MidRows(arr,3,3);
+Midcols(arr,3,3);
+cout<<endl;
+    
+    
+    return 0;
+}

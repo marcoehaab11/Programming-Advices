@@ -1,0 +1,58 @@
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+
+string ReadString()
+{   string s;
+    cout<<"Enter Your Text ?\n";
+    getline(cin,s);
+    return s;
+}
+
+
+vector<string> PuthEachWordInStringInVector(string s,string delim)
+    { 
+ 
+   short pos=0;
+   string sWord;
+   vector<string> vString;
+   
+   while(  (pos=s.find(delim))  != std::string::npos)
+   {   
+       sWord=s.substr(0,pos);
+       if(sWord !="")
+       {   
+            vString.push_back(sWord);
+       }
+             s.erase(0,pos+delim.length());
+   }
+   if(s !="")
+   {    
+       vString.push_back(s);
+   }
+   return vString;
+   
+}
+
+string ReverseWordsInString(string s)
+{
+    vector<string> vString =PuthEachWordInStringInVector(s," ");
+    string S2;
+    vector<string>::iterator iter=vString.end();
+    while (iter != vString.begin())
+    {
+        --iter;
+        S2 += *iter+" ";
+    }
+    S2 =S2,substr(0,S2.length()-1); //removelastSpace
+    return S2;
+}
+
+int main() {
+  
+   string Words="marco ehab farouk";
+   cout<< ReverseWordsInString(Words);
+   
+    return 0;
+}

@@ -1,0 +1,45 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+string ReadString()
+{   string s;
+    cout<<"Enter Your Text ?\n";
+    getline(cin,s);
+    return s;
+}
+
+char ReadChar ()
+{
+    char c;
+    cout<<"Enter Your Letter ?\n";
+    cin>>c;
+    return c;
+}
+
+bool IsVowel(char w)
+{
+    char c=tolower(w);
+
+    return (c=='a'||c=='e'||c=='i'||c=='o'||c=='u');
+}
+
+void CountLetterInText(string s)
+{ 
+    for(short i=0;i<s.length();i++)
+    {
+        if( IsVowel(s[i]) )
+        {cout<<s[i]<<"   ";}
+    }
+    
+}
+
+
+
+int main() {
+   
+    string Word=ReadString();
+    CountLetterInText(Word);
+    
+    return 0;
+}

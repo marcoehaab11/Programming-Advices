@@ -1,0 +1,80 @@
+#include <iostream>
+#include <string>
+#include<iomanip>
+using namespace std;
+
+
+int RandomNumber(int From,int To)
+{
+    int RandomNum=rand()%(To-From+1) +From;
+    return RandomNum;
+}
+
+void FillMatrixWithRandom(int arr[3][3])
+{
+    for(short i=0;i<3;i++)
+    {
+        for(short j=0;j<3;j++)
+        {
+            arr[i][j]=RandomNumber(1,10);
+        }
+    }
+}
+
+void PrintMatrix(int arr[3][3])
+{   cout<<"The Matrix : \n";
+    for(short i=0;i<3;i++)
+    {
+        for(short j=0;j<3;j++)
+        {   
+            printf("          %0*d",2,arr[i][j]);
+        }
+        cout<<endl;
+    }
+}
+
+int IsPlandromeMatrix (int arr[3][3],short rows,short cols)
+{   int min=100;
+     for(short i=0;i<rows;i++)
+    {
+        for(short j=0;j<cols;j++)
+        {       
+            if(arr[i][j]!=arr[i][cols-1-j])
+            {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+void FibonacciLoop(int arr[100],int arrLength)
+{
+    arr[0]=1;
+    arr[1]=1;
+    for(int i=2;i<arrLength;i++)
+    {
+        arr[i]=arr[i-1]+arr[i-2];
+    }
+}
+
+void PrintArr(int arr[100],int arrLength)
+{
+    for(short i=0;i<arrLength;i++)
+    {
+        cout<<" "<<arr[i];
+    }
+}
+
+int main() {
+srand((unsigned)time(NULL));
+
+int arr[100],number=0;
+cout<<"Enter The Number do u need?\n";
+cin>> number;
+FibonacciLoop(arr,number);
+PrintArr(arr,number);
+
+
+    
+    return 0;
+}

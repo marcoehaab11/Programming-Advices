@@ -1,0 +1,149 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <fstream>
+using namespace std;
+
+const string ClientFileName="Clients.txt";
+
+struct strClient 
+{
+    string AccountNumber;
+    string PinCode;
+    string Name;
+    string Phone;
+    double AccountBalace;
+};
+
+strClient ReadNewClient()
+{   strClient Client;
+    cout<<"Add New Client :\n";
+    cout<<"Enter Your Account Number ? ";
+    getline(cin >> ws,Client.AccountNumber);
+    
+    cout<<"Enter Your PinCode ? ";
+    getline(cin,Client.PinCode);
+    
+    cout<<"Enter Your Name ? ";
+    getline(cin,Client.Name);
+    
+    cout<<"Enter Your Phone ? ";
+    getline(cin,Client.Phone);
+    
+    cout<<"Enter Your AccountBalace ? ";
+    cin>>Client.AccountBalace;
+    
+    return Client;
+}
+void AddDataLineToFile(string ClientFileName ,string line)
+{
+    fstream MyFile;
+    
+    MyFile.open(ClientFileName,ios::out|ios::app);
+    
+    if(MyFile.is_open())
+    {
+        MyFile<< line<<endl;
+        MyFile.close();
+    }
+}
+
+
+vector<string> SplitString(string line,string SP)
+{
+    vector<string> Vstring;
+    short pos=0;
+    string sWord;
+    
+    while( ( pos=line.find(SP) ) != std::string::npos)
+    {   
+        sWord=line.substr(0,pos);
+        if(sWord !="")
+        {
+            Vstring.push_back(sWord);
+        }
+        line.erase(0, pos+SP.length() );
+    }
+    
+    if(line != "")
+    {
+        Vstring.push_back(line);
+    }
+    return Vstring;
+}
+
+//convert
+string ConvertRecordToLine(strClient Client,string SP)
+{
+    string line="";
+
+    line +=Client.AccountNumber+SP;
+    line +=Client.PinCode+SP;   
+    line +=Client.Name+SP;
+    line +=Client.Phone+SP;
+    line +=to_string(Client.AccountBalace);
+    return line;
+}
+ 
+strClient ConvertLinetoRecord(string line ,string SP)
+{
+    strClient Client;
+    vector<string> VClientData;
+    VClientData=SplitString(line, SP);
+    
+    Client.AccountNumber=VClientData[0];
+    Client.PinCode=VClientData[1];
+    Client.Name=VClientData[2];
+    Client.Phone=VClientData[3];
+    Client.AccountBalace=stod(VClientData[4]); //cast string to double
+    
+    return Client;     
+}
+
+void PrintClientRecord(strClient Client)
+{   
+    printf("\nThe following is the extracted client record:\n");
+    cout<<"AccountNumber : "<<Client.AccountNumber<<"\n";
+    cout<<"PinCode       : "<<Client.PinCode<<"\n";
+    cout<<"Name          : "<<Client.Name<<"\n";
+    cout<<"Phone         : "<<Client.Phone<<"\n";
+    cout<<"AccountBalace : "<<Client.AccountBalace;
+    
+}
+
+
+void AddNewClient()
+{   strClient NewClient;
+    NewClient=ReadNewClient();
+
+    string line;
+    line=ConvertRecordToLine(NewClient," \#\ ");
+    
+    AddDataLineToFile(ClientFileName,line);
+}
+
+
+
+void AddClients()
+{
+    char AddMore='Y';
+    do
+    {   
+        system("cls");
+        cout<<"  New Client  \n";
+        AddNewClient();
+        cout<<"Do you want Add anothe New client ? Y/N ";
+        cin>>AddMore;
+    }while(toupper(AddMore)=='Y');
+}
+
+int main() {
+
+
+
+    AddClients();
+
+
+
+system("pause>0");
+}

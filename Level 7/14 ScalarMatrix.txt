@@ -1,0 +1,99 @@
+#include <iostream>
+#include <string>
+#include<iomanip>
+using namespace std;
+
+
+int RandomNumber(int From,int To)
+{
+    int RandomNum=rand()%(To-From+1) +From;
+    return RandomNum;
+}
+
+void FillMatrixWithRandom(int arr[3][3])
+{
+    for(short i=0;i<3;i++)
+    {
+        for(short j=0;j<3;j++)
+        {
+            arr[i][j]=RandomNumber(1,10);
+        }
+    }
+}
+
+void PrintMatrix(int arr[3][3])
+{   cout<<"The Matrix : \n";
+    for(short i=0;i<3;i++)
+    {
+        for(short j=0;j<3;j++)
+        {   
+            printf("          %0*d",2,arr[i][j]);
+        }
+        cout<<endl;
+    }
+}
+
+int SumMatrix(int arr[3][3],short rows,short cols)
+{   int sum=0;
+     for(short i=0;i<rows;i++)
+    {
+        for(short j=0;j<cols;j++)
+        {   
+           sum+=arr[i][j];
+        }
+    }
+    return sum;
+}
+bool TestTypicalMatrix(int arr[3][3],int arr2[3][3])
+{
+    for(short i=0;i<3;i++)
+    {
+        for(short j=0;j<3;j++)
+        {       
+            if(arr[i][j]!=arr2[i][j])
+            {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+bool ChecScalarMatrix(int arr[3][3],short rows,short cols)
+{   int Number =  arr[0][0];
+    for(int i=0;i<rows;i++)
+    {
+        for(short j=0;j<cols;j++)
+        {
+            if(i==j && arr[i][j]!=Number)
+            {
+                return false;
+            }
+
+            
+        }
+    }
+    return true;
+}
+int main() {
+srand((unsigned)time(NULL));
+
+int arr2[3][3],arrMult[3][3];
+int arr[3][3]={
+    {4,0,3},
+    {0,4,3},
+    {0,0,4}
+};
+
+
+PrintMatrix(arr);
+
+if( ChecScalarMatrix(arr,3,3) )
+{
+    cout<<"Scalar";
+}
+else {cout<<"NOT Scalar";};
+
+    
+    
+    return 0;
+}

@@ -1,0 +1,38 @@
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+
+string ReadString()
+{   string s;
+    cout<<"Enter Your Text ?\n";
+    getline(cin,s);
+    return s;
+}
+
+string JoinString(vector<string> S1,string dia)
+{   string words;
+    for(string& s : S1)
+    {
+      if (s!=" ")
+      {words+=s+dia;}
+    }
+    return words.substr( 0,words.length()-dia.length() );
+}
+
+string JoinString(vector<string> S1,int Vectorlength,string dia)
+{   string words;
+    for(short i=0;i<Vectorlength;i++)
+    {
+      if (S1[i]!=" ")
+      {words+=S1[i]+dia;}
+    }
+    return words.substr( 0,words.length()-dia.length() );
+}
+
+int main() {
+   
+   vector<string> dude ={"marco","aenfae","iafsjgds"}; 
+ cout<<JoinString(dude,2,",");
+    return 0;
+}

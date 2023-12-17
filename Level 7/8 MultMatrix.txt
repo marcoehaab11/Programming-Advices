@@ -1,0 +1,62 @@
+#include <iostream>
+#include <string>
+#include<iomanip>
+using namespace std;
+
+
+int RandomNumber(int From,int To)
+{
+    int RandomNum=rand()%(To-From+1) +From;
+    return RandomNum;
+}
+
+void FillMatrixWithRandom(int arr[3][3])
+{
+    for(short i=0;i<3;i++)
+    {
+        for(short j=0;j<3;j++)
+        {
+            arr[i][j]=RandomNumber(1,10);
+        }
+    }
+}
+
+void PrintMatrix(int arr[3][3])
+{   cout<<"The Matrix : \n";
+    for(short i=0;i<3;i++)
+    {
+        for(short j=0;j<3;j++)
+        {   
+            cout<<setw(5)<<arr[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+}
+
+void Mult2Arr(int arr[3][3],int arr2[3][3],int arrMult[3][3],int rows,int cols)
+{
+    for(short i=0;i<rows;i++)
+    {
+        for(short j=0;j<cols;j++)
+        {
+            arrMult[i][j]=arr[i][j]*arr2[i][j];
+        }
+    }
+}
+
+
+int main() {
+srand((unsigned)time(NULL));
+
+int arr[3][3],arr2[3][3],arrMult[3][3];
+
+FillMatrixWithRandom(arr);
+FillMatrixWithRandom(arr2);
+PrintMatrix(arr);
+PrintMatrix(arr2);
+Mult2Arr(arr,arr2,arrMult,3,3);
+PrintMatrix(arrMult);
+    
+    
+    return 0;
+}

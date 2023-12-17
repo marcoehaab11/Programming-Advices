@@ -1,0 +1,42 @@
+#include <iostream>
+#include <string>
+#include<iomanip>
+using namespace std;
+
+
+void FillMatrixWithRandomWithOrderNumber(int arr[3][3])
+{   int Number=1;
+     for(short i=0;i<3;i++)
+    {
+        for(short j=0;j<3;j++)
+        {
+            arr[i][j]=Number;
+            Number++;
+        }
+    }
+}
+
+void PrintMatrix(int arr[3][3])
+{   cout<<"The Random Matrix : \n";
+    for(short i=0;i<3;i++)
+    {
+        for(short j=0;j<3;j++)
+        {   
+            cout<<setw(5)<<arr[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+}
+
+int main() {
+srand((unsigned)time(NULL));
+
+  int arr[3][3],arrSum[10];
+
+    FillMatrixWithRandomWithOrderNumber(arr);
+    PrintMatrix(arr);
+  
+    
+    
+    return 0;
+}

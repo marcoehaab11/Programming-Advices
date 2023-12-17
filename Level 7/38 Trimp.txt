@@ -1,0 +1,71 @@
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+
+string ReadString()
+{   string s;
+    cout<<"Enter Your Text ?\n";
+    getline(cin,s);
+    return s;
+}
+
+
+vector<string> PuthEachWordInStringInVector(string s,string delim)
+{ 
+ 
+   short pos=0;
+   string sWord;
+   vector<string> vString;
+   
+   while(  (pos=s.find(delim))  != std::string::npos)
+   {   
+       sWord=s.substr(0,pos);
+       if(sWord !="")
+       {   
+            vString.push_back(sWord);
+       }
+             s.erase(0,pos+delim.length());
+   }
+   if(s !="")
+   {    
+       vString.push_back(s);
+   }
+   return vString;
+   
+}
+
+string TrimLeft(string S1)
+{
+    for(int i=0;i<S1.length();i++)
+    {
+        if( S1[i] !=' ')
+        {
+                return S1.substr(i,S1.length()-1);      
+        }
+    }
+    return "";
+}
+string TrimRight(string S1)
+{
+    for(int i=S1.length()-1;i>=0;i--)
+    {
+        if(S1[i]!=' ')
+        {
+            return S1.substr(0,i+1);
+        }
+    }
+}
+string Trimp (string S1)
+{
+    return TrimRight(TrimLeft(S1));
+}
+
+int main() {
+   
+    
+   cout<<TrimLeft("            lomsdg")<<endl;
+    cout<<TrimRight(" r[pkwrm ookpkwep             ")<<endl;
+   cout<<Trimp("            sdnoinsdofnsd       ");
+    return 0;
+}

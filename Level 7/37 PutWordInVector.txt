@@ -1,0 +1,51 @@
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+
+string ReadString()
+{   string s;
+    cout<<"Enter Your Text ?\n";
+    getline(cin,s);
+    return s;
+}
+
+
+vector<string> PuthEachWordInStringInVector(string s,string delim)
+    { 
+ 
+   short pos=0;
+   string sWord;
+   vector<string> vString;
+   
+   while(  (pos=s.find(delim))  != std::string::npos)
+   {   
+       sWord=s.substr(0,pos);
+       if(sWord !="")
+       {   
+            vString.push_back(sWord);
+       }
+             s.erase(0,pos+delim.length());
+   }
+   if(s !="")
+   {    
+       vString.push_back(s);
+   }
+   return vString;
+   
+}
+
+
+
+int main() {
+   
+    string Word=ReadString();
+    vector<string> vString;
+    vString=PuthEachWordInStringInVector(Word," ");
+    for(string& s:vString)
+    {
+        cout<<s<<endl;
+    }
+    
+    return 0;
+}

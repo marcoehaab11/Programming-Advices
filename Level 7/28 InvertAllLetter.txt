@@ -1,0 +1,36 @@
+#include <iostream>
+#include<string>
+using namespace std;
+
+
+
+string ReadString()
+    {
+        string s1;
+        cout<<"Please Enter your string ?\n";
+        getline(cin,s1);
+        return s1;
+    }
+
+
+char Invert(char S1)
+   {
+      return (isupper(S1)) ? tolower(S1):toupper(S1) ;
+   }
+string InvertAllLetter(string S1)
+{
+    for(short i=0;i<S1.length();i++)
+    {
+        S1[i]=Invert(S1[i]);
+    }
+
+    return S1;
+}
+
+   
+int main() {
+    
+    
+ cout<<InvertAllLetter("MARCO ehab FAROUK ");
+     return 0;
+    }

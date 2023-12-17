@@ -1,0 +1,60 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+string ReadString()
+{   string s;
+    cout<<"Enter Your Text ?\n";
+    getline(cin,s);
+    return s;
+}
+
+char ReadChar ()
+{
+    char c;
+    cout<<"Enter Your Letter ?\n";
+    cin>>c;
+    return c;
+}
+
+bool IsVowel(char w)
+{
+    char c=tolower(w);
+
+    return (c=='a'||c=='e'||c=='i'||c=='o'||c=='u');
+}
+
+void PrintEachWordInString(string s)
+{ 
+   string delim=" "; //delimiter
+   
+   short pos=0;
+   string sWord;
+   
+   
+   while(  (pos=s.find(delim))  != std::string::npos)
+   {
+       sWord=s.substr(0,pos);
+       if(sWord !=" ")
+       {
+           cout<<sWord<<endl;
+       }
+       s.erase(0,pos+delim.length());
+   }
+   if(s !="")
+   {
+       cout<<s<<endl;
+   }
+   
+   
+}
+
+
+
+int main() {
+   
+    string Word=ReadString();
+    PrintEachWordInString(Word);
+    
+    return 0;
+}

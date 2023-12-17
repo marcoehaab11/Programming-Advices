@@ -1,0 +1,55 @@
+#include iostream
+#include string
+#includeiomanip
+using namespace std;
+
+
+void FillMatrixWithRandomWithOrderNumber(int arr[3][3])
+{   int Number=1;
+     for(short i=0;i3;i++)
+    {
+        for(short j=0;j3;j++)
+        {
+            arr[i][j]=Number;
+            Number++;
+        }
+    }
+}
+
+void PrintMatrix(int arr[3][3])
+{   coutThe Order Matrix  n;
+    for(short i=0;i3;i++)
+    {
+        for(short j=0;j3;j++)
+        {   
+            coutsetw(5)arr[i][j] ;
+        }
+        coutendl;
+    }
+}
+
+void TransposedMatrix(int arr[3][3])
+{   coutThe Transpsoe Matrix  n;
+    for(short i=0;i3;i++)
+    {
+        for(short j=0;j3;j++)
+        {   
+            coutsetw(5)arr[j][i] ;
+        }
+        coutendl;
+    }
+}
+
+
+int main() {
+srand((unsigned)time(NULL));
+
+  int arr[3][3],arrSum[10];
+
+    FillMatrixWithRandomWithOrderNumber(arr);
+    PrintMatrix(arr);
+    TransposedMatrix(arr);
+    
+    
+    return 0;
+}
