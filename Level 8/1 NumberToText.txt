@@ -1,0 +1,57 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+string NumberToText(int Number)
+{
+    if(Number == 0)
+    { return "";}
+    if(Number>0  && Number<20)
+    {
+        string arr[]={"","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fiveteen","sixteen","seventeen","eighteen","nineteen"};
+        
+        return arr[Number];
+    }
+    if(Number>19 &&Number<99)
+    {
+        string arr[]={"","","twenty","thirty","fourty","fifty","sixty","eighty","ninety"};
+        return arr[(Number/10)]+" "+NumberToText(Number%10);
+    }
+    if(Number>99 && Number<199)
+    {
+        return "One Hundred "+ NumberToText(Number%100);
+    }
+    if(Number>199 &&Number<999)
+    {
+        return NumberToText(Number/100) +" Hundred "+NumberToText(Number%100);
+    }
+    if(Number>(999)&&Number<(2000-1))
+    {
+         return "One Thousand "+ NumberToText(Number%1000);
+    }
+    if(Number>1999 &&Number<(1000000-1))
+    {
+        return NumberToText(Number/1000) +" Thousand "+NumberToText(Number%1000) ;
+    }
+    if(Number>(1000000-1) && Number<(2000000-1))
+    {
+        return " One Million "+NumberToText(Number%1000000);
+    }
+    if(Number>(2000000-1)&&Number<(10000000))
+    {
+        return NumberToText(Number/1000000) + " Million "+NumberToText(Number%1000000);
+    }
+
+    
+}
+
+
+
+
+int main() {
+
+    
+    cout<<NumberToText(2000001);
+
+    return 0;
+}
