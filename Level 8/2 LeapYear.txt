@@ -1,0 +1,29 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+bool IsLeapYear(short Year)
+{
+    if(Year%400 == 0)
+    {return true;}
+    else if (Year%100 == 0)
+    {
+        return false;
+    }
+    else if (Year%4==0)
+    { return true;}
+    else 
+    {
+        return false;
+    }
+}
+
+
+
+int main() {
+
+    
+    cout<<IsLeapYear(2000);
+
+    return 0;
+}

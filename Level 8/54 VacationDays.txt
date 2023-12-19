@@ -1,0 +1,185 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct strDate
+{
+    short Year;
+    short Month;
+    short Day;
+};
+
+bool IsLeapYear(short Year)
+{   
+    return ( (Year%100 != 0 && Year%4==0 ) || (Year%400==0) );
+    // if year is divisible by 4 AND not divisible by 100
+    // OR if year is divisible by 400
+    // then it is a leap year
+}
+int NumberofDays(short mon,short Year)
+{
+    if(mon>12 || mon<1)
+    return 0;
+    
+    int NumberofDays[13]={0,31,29,31,30,31,30,31,31,30,31,30,31};
+    
+    return (mon==2)? (IsLeapYear(Year)?29:28) :NumberofDays[mon];
+}
+
+//Overload function
+short DayOfWeekOrder(short Day, short Month, short Year)
+{ short a, y, m; 
+    a = (14 - Month) / 12;
+    y = Year - a;    
+    m = Month + (12 * a) - 2;
+    // Gregorian:
+    //0:sun, 1:Mon, 2:Tue...etc
+return (Day + y + (y / 4) - (y / 100) + (y / 400) + ((31 * m) / 12)) % 7; 
+    
+}
+short DayOfWeekOrder(strDate Date)
+{
+    return DayOfWeekOrder(Date.Day,Date.Month,Date.Year);
+}
+
+int NumberOfDaysFromBegining(short Day,short Month, short Year)
+{   short counter=0;
+   
+        for(int i=1;i<Month;i++)
+        { 
+            counter+=NumberofDays(i,Year);
+        }
+        return Day+counter;
+    
+    
+}
+int DiffBetweenDates(strDate Date1,strDate Date2)
+{   int Year =Date1.Year;
+
+    int  Date1Tall=NumberOfDaysFromBegining(Date1.Day,Date1.Month,Date1.Year);
+    int  Date2Tall=NumberOfDaysFromBegining(Date2.Day,Date2.Month,Year);
+    
+    return Date2Tall-Date1Tall;
+}
+string DayShortName(int Day)
+{
+    string arr[7]={"Sun","Mon","Tue","Wed","Thu","Fri","Sat"};
+    return arr[Day];
+}
+strDate IncreaseByOneDay(strDate OldDate)
+{   strDate Date=OldDate;
+
+    if(Date.Day >= NumberofDays(OldDate.Month,OldDate.Year))
+    {
+        Date.Month++;
+        Date.Day=1;
+    }
+    else {
+        Date.Day++;
+    }
+    if(Date.Month>12)
+    {
+        Date.Month=1;
+        Date.Year++;
+    }
+  
+    return Date;
+}
+bool IsDate1BeforeDate2(strDate Date1, strDate Date2)
+{ return  (Date1.Year < Date2.Year) ? true : ((Date1.Year == Date2.Year) ? (Date1.Month < Date2.Month ? true : (Date1.Month == Date2.Month ? Date1.Day < Date2.Day : false)) : false); } 
+short  IsEndOfWeek(strDate Date)
+{   //end of week is saturday
+    return ( DayOfWeekOrder(Date)==6 );
+}
+short  IsWeekEnd(strDate Date)
+{   //WeekEnd are Friday or Saturday
+    short Number=DayOfWeekOrder(Date.Day,Date.Month,Date.Year); 
+    return  (Number==5)||(Number==6);
+}
+short IsBusinessDay(strDate Date)
+{
+    return !(IsWeekEnd (Date) );
+}
+short DaysUntilTheEndOfWeek(strDate Date)
+{
+    return 6-DayOfWeekOrder(Date);
+}
+short DaysUntilTheEndOfMonth(strDate Date)
+{
+    strDate EndOfMonth;
+    EndOfMonth.Day=NumberofDays(Date.Month,Date.Year);
+    EndOfMonth.Month=Date.Month;
+    EndOfMonth.Year=Date.Year;
+    return DiffBetweenDates(Date,EndOfMonth);
+}
+short DaysUntilTheEndOfYear(strDate Date)
+{
+    strDate EndOfYear;
+    EndOfYear.Day=31;
+    EndOfYear.Month=12;
+    EndOfYear.Year=Date.Year;
+    return DiffBetweenDates(Date,EndOfYear);
+}
+string DayName(strDate Date)
+{
+    return DayShortName(DayOfWeekOrder(Date)); 
+}
+short VactionDays(strDate Date1 ,strDate Date2)
+{  
+     int counter =0;
+    while(IsDate1BeforeDate2(Date1,Date2))
+    {   
+        if ( !(IsBusinessDay(Date1)) )
+        {
+            counter ++;
+        }
+        IncreaseByOneDay(Date1);
+    }
+    return counter;
+}
+
+short ReadYear()
+{   short year;
+    cout<<"Enter The Year ? ";
+    cin>>year;
+    return year;
+}
+short ReadMon()
+{   short Mon;
+    cout<<"\nEnter The Mon ? ";
+    cin>>Mon;
+    return Mon;
+}
+short ReadDay()
+{   short Day;
+    cout<<"\nEnter The Day? ";
+    cin>>Day;
+    return Day;
+}
+
+strDate ReadFullDate()
+{
+    strDate Date;
+    
+     Date.Day=ReadDay();
+     Date.Month=ReadMon();
+     Date.Year=ReadYear();
+    
+   
+    
+    return Date;
+}
+
+int main() {
+    
+cout<<"Vacation Stars :";
+strDate Date1 = ReadFullDate(); 
+cout<<"Vacation Ends  :\n";
+strDate Date2 = ReadFullDate(); 
+
+cout<<"\n\n\nVaction From :"<<DayName(Date1)<<","<<Date1.Day<<"/"<<Date1.Month<<"/"<<Date1.Year<<endl;
+cout<<"Vaction To :"<<DayName(Date2)<<","<<Date2.Day<<"/"<<Date2.Month<<"/"<<Date2.Year<<endl;
+cout<<"Number Of Days in Vaction  :"<<VactionDays(Date1,Date2);
+
+    return 0;
+}

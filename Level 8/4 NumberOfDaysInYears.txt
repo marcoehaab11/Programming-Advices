@@ -1,0 +1,49 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+bool IsLeapYear(short Year)
+{   
+    return ( (Year%100 != 0 && Year%4==0 ) || (Year%400==0) );
+    // if year is divisible by 4 AND not divisible by 100
+    // OR if year is divisible by 400
+    // then it is a leap year
+}
+int NumberofDays(bool Year)
+{   
+    return (Year) ? 366:365;
+}
+
+int NumberofHours(bool Year)
+{  
+    return NumberofDays(Year)*24;
+}
+
+int NumberofMin(bool Year)
+{ 
+    return NumberofHours(Year)*60;
+}
+
+
+int NumberofSecand(bool Year)
+{  
+    return NumberofMin(Year)*60;
+}
+ void PrintMsg(short Year)
+ {  
+     printf("Number of Days    : %d \n",NumberofDays(Year));
+     printf("Number of Houes   : %d \n",NumberofHours(Year));
+     printf("Number of Minutes : %d \n",NumberofMin(Year));
+     printf("Number of Secand  : %d",NumberofSecand(Year));
+ }
+
+
+
+
+int main() {
+
+    
+    PrintMsg(IsLeapYear(2000));
+
+    return 0;
+}

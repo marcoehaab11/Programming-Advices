@@ -1,0 +1,19 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+bool IsLeapYear(short Year)
+{   
+    return ( (Year%100 != 0 && Year%4==0 ) || (Year%400==0) );
+    // if year is divisible by 4 AND not divisible by 100
+    // OR if year is divisible by 400
+    // then it is a leap year
+}
+
+int main() {
+
+    
+    cout<<IsLeapYear(2000);
+
+    return 0;
+}
