@@ -1,0 +1,106 @@
+#include <iostream>
+using namespace std;
+
+struct strDate
+{
+    short Year;
+    short Month;
+    short Day;
+};
+struct strPeriod
+{
+    strDate StartPeriod;
+    strDate EndPeriod;
+};
+enum enDateCompare {Before=-1,Equal=0,After=1};
+
+
+bool IsDate1BeforDate2(strDate Date2 ,strDate Date1)
+{
+    return (Date1.Year>Date2.Year)?true: (Date1.Year==Date2.Year)?(Date1.Month>Date2.Month)?true: (Date1.Month==Date2.Month)? Date1.Day>Date2.Day :false:false;
+}
+bool IDate1EqualDate2(strDate Date1 ,strDate Date2)
+{
+     return (Date1.Year==Date2.Year)? (Date1.Month==Date2.Month)?(Date1.Day==Date2.Day)?true:false :false :false;
+}
+bool IsDate1AfterDate2(strDate Date1,strDate Date2)
+{
+    return (!(IsDate1BeforDate2(Date1,Date2))&& !(IDate1EqualDate2(Date1,Date2)) )?true:false;
+}
+enDateCompare Compare(strDate Date1,strDate Date2)
+{
+    if(IDate1EqualDate2(Date1,Date2))
+    return enDateCompare::Equal;
+    
+      if(IsDate1BeforDate2(Date1,Date2))
+    return enDateCompare::Before;
+    
+    return enDateCompare::After;
+}
+bool IsPeriodOverLap(strPeriod p1, strPeriod p2)
+{
+    if( Compare(p2.EndPeriod,p1.StartPeriod) ==enDateCompare::Before
+    ||
+    Compare(p2.StartPeriod,p1.EndPeriod) ==enDateCompare::After
+    )
+    return true;
+    else 
+    return false;
+}
+
+
+
+
+short ReadYear()
+{   short year;
+    cout<<"Enter The Year ? ";
+    cin>>year;
+    return year;
+}
+short ReadMon()
+{   short Mon;
+    cout<<"\nEnter The Mon ? ";
+    cin>>Mon;
+    return Mon;
+}
+short ReadDay()
+{   short Day;
+    cout<<"\nEnter The Day? ";
+    cin>>Day;
+    return Day;
+}
+
+strDate ReadFullDate()
+{
+    strDate Date;
+    
+     Date.Day=ReadDay();
+     Date.Month=ReadMon();
+     Date.Year=ReadYear();
+    
+   
+    
+    return Date;
+}
+
+strPeriod ReadPeriod()
+{
+    strPeriod Period;
+    cout<<"Start Period :\n";
+    Period.StartPeriod=ReadFullDate();
+    cout<<"End  Period :\n";
+    Period.EndPeriod=ReadFullDate();
+    return Period;
+}
+
+int main() {
+    
+strPeriod p1,p2;
+p1=ReadPeriod();
+p2=ReadPeriod();
+
+cout<<IsPeriodOverLap(p1,p2);
+
+
+    return 0;
+}
