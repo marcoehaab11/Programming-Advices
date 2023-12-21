@@ -1,0 +1,63 @@
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+struct strDate 
+{
+    short Day,Month,Year;
+};
+
+vector<string> SplitString(string S1,string sp)
+{
+    vector<string> vString;
+    short pos=0;
+    string sWord; 
+    
+    while ( (pos=S1.find(sp))!=std::string::npos)
+    {
+        sWord=S1.substr(0,pos);
+        if(sWord != "")
+        {
+            vString.push_back(sWord);
+        }
+        S1.erase(0,pos+sp.length());
+    }
+    
+    if(S1 !="")
+    {
+        vString.push_back(S1);
+    }
+    return vString;
+}
+
+strDate StringtoDataStructure(string msg)
+{
+    vector<string> vString=SplitString(msg,"/");
+    
+    strDate Date;
+    
+    Date.Day=stoi(vString[0]);
+    Date.Month=stoi(vString[1]);
+    Date.Year=stoi(vString[2]);
+    
+    return Date;
+}
+void  PrintDate(strDate Date)
+{
+    cout<<"Day :"<<Date.Day<<" Month :"<<Date.Month<<" Year: "<<Date.Year;
+}
+string ReadStringDate(string Message) { 
+    string DateString;     
+    cout <<Message; 
+    getline(cin >> ws, DateString);
+    return DateString; }
+
+int main() {
+    
+    string DateString = ReadStringDate("\nPlease Enter Date dd/mm/yyyy? ");
+        
+     strDate Date=StringtoDataStructure(DateString);   
+      PrintDate (Date);
+    return 0;
+}
