@@ -1,0 +1,26 @@
+#include <iostream>
+using namespace std;
+
+class clsA
+{ private:
+    int _var1=10;
+
+friend int mysum(clsA A);//friend funvtion 
+};
+
+int mysum(clsA A)
+{
+    return A._var1+1;
+}
+
+
+
+
+int main()
+{
+    clsA A;
+  
+    cout<<mysum(A);
+    system("pause>0");
+    return 0;
+}

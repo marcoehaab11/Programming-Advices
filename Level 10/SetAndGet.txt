@@ -1,0 +1,57 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class clsPerson 
+{
+    private:
+    
+    string _FirstName,_LastName;
+    
+    public:
+    
+    void setFirstName(string fn)
+    {
+        _FirstName=fn;
+    }
+    void setLastName(string ls)
+    {
+        _LastName=ls;
+    }
+    string getFirstName()
+    {
+        return _FirstName;
+    }
+    string getLastName()
+    {
+        return _LastName;
+    }
+    
+    string FullName()
+    {
+    return _FirstName+" "+_LastName;
+        
+    }
+};
+
+
+
+int main() {
+    
+    clsPerson Person1;
+
+    Person1.setFirstName("Ali");
+    Person1.setLastName("Koko");
+    cout<<Person1.FullName();
+
+
+
+
+
+
+
+
+
+    return 0;
+}
