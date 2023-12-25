@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+
+class clsA
+{ private:
+    int _var1=10;
+
+friend class clsB;//friend class 
+};
+
+class clsB : public clsA
+{ 
+    public :
+    void print(clsA A)
+    {
+        cout<<"The Value of Var :"<<_var1;
+    }
+    
+    
+};
+
+
+
+
+int main()
+{
+    clsA A;
+    clsB B;
+    B.print(A);
+    system("pause>0");
+    return 0;
+}

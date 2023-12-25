@@ -1,0 +1,26 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class cls 
+{
+    public:
+    int var; 
+    static int f()
+    {
+        return 10;
+    }
+
+   
+ 
+};
+
+
+
+int main() 
+{   
+    //we can call it without option
+       cout<<cls::f();
+        return 0;
+}

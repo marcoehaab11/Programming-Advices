@@ -1,0 +1,28 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class clsA
+{   
+    public:
+    string FullName="marco";
+};
+class clsB :public clsA
+{
+    
+};
+
+int main() 
+{   
+    //upcasting
+    clsB B;
+    clsA *A=&B;
+    cout<<A->FullName;
+
+    //downcastin can't work
+    /*clsA AA;
+    clsB *BB=&AA;
+    */
+
+}

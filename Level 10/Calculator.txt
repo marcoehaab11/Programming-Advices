@@ -1,0 +1,85 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class clsCalu 
+{
+    private:
+    
+    float _Number=0;
+    float _Result=0;
+    float _LastResult=0;
+    string _LastOperation="clear";
+    
+    bool _IsZero(int N)
+    {
+        return (N==0);
+        
+    };
+    
+    public:
+    
+    void Add(int Number)
+    {   _LastOperation="Adding ";
+        _LastResult=_Result;
+        _Number=Number;
+        _Result+=_Number;
+    }
+    void Substract(int Number)
+    {   _LastOperation="Substracting ";
+        _LastResult=_Result;
+        _Number=Number;
+        _Result-=_Number;
+    }
+    void Divide(int Number)
+    {  _LastOperation="Divideing ";
+        _LastResult=_Result;
+        if(Number==0)
+        _Number=1;
+        
+        _Result /=_Number;
+    }
+    void Multiply(int Number)
+    {    _LastOperation="Multiplying ";
+        _LastResult=_Result;
+        _Number=Number;
+        _Result*=_Number;
+    }
+    void Clear()
+    {   _Number=0;
+         _Result=0;
+        system("cls");
+        
+    }
+    void CancelLastOperation()
+    {   _LastOperation="Cancelling Last Operation ";
+        _Number=0;
+        _Result=_LastResult;
+    }
+    void PrintResult()
+    {
+        cout<<"Result "<<"After "<<_LastOperation<<" "<<_Number<<" is "<<_Result<<endl;
+    }
+};
+
+
+
+int main() {
+    
+    clsCalu Calculator ;
+    Calculator.Add(10);
+    Calculator.PrintResult();
+
+    Calculator.Multiply(10);
+    Calculator.PrintResult();
+    Calculator.CancelLastOperation();
+    Calculator.PrintResult();
+
+
+
+
+
+
+    return 0;
+}

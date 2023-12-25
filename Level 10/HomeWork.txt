@@ -1,0 +1,122 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class clsP 
+{   private :
+    int _id;
+    string _fn,_ln,_em,_ph,_title,_dep;
+        
+
+    public:
+    
+    clsP(int id,string fn,string ls,string em ,string ph,string title,string dep)
+    {
+        _id=id;
+        _fn=fn;
+        _ln=ls;
+        _em=em;
+        _ph=ph;
+        _title=title;
+        _dep=dep;
+        
+    }
+    
+    void setTitle(string title)
+    {
+        _title=title;
+    }
+    void setDepartment(string dep)
+    {
+        _dep=dep;
+    }
+    string getTitle()
+    {return _title;}
+    string fetDep()
+    {return _dep;}
+    void setFn(string fn)
+    {
+        _fn=fn;
+    }
+    void setLs(string ls)
+    {
+        _ln=ls;
+    }
+       void setEm(string em)
+    {
+        _em=em;
+    }   
+    void setPh(string ph)
+    {
+        _ph=ph;
+    }
+    string getFN()
+    {
+        return _fn;
+    }
+    string getLN()
+    {
+        return _ln;
+    }
+    string getEm()
+    {
+        return _em;
+    }
+    string getPh()
+    {
+        return _ph;
+    }
+    
+    //ReadOnly
+     int getid()
+    {
+        return _id;
+    }
+    string FullName()
+    {
+        return _fn+" "+_ln;
+    }
+    
+    void SendSms(string msg)
+    {
+    cout << "\n\nThe following SMS sent successfully to phone: " << _ph << endl;
+		cout << msg << endl;
+    }
+   	void SendEmail(string Subject, string Body)
+   	{
+   	    	cout << "\nThe following message sent successfully to email: " << _em << endl;
+   	    	cout << "Subject: " << Subject << endl;
+		cout << "Body   : " << Body << endl;
+   	}
+   	
+   	void Print()
+	{
+		cout << "\nInfo: \n";
+
+		cout << "______________________________\n";
+		cout << "ID         : " << _id << endl;
+		cout << "First Name : " << _fn << endl;
+		cout << "Last Name  : " << _ln << endl;
+		cout << "Full Name  : " << FullName() << endl;
+		cout << "Email      : " << _em << endl;
+		cout << "Phone      : " << _ph << endl;
+		cout << "Title      : " << _title << endl;
+		cout << "Department : " << _dep << endl;
+		cout << "______________________________\n";
+	}
+
+ 
+};
+
+
+
+int main() 
+{   
+    clsP Person1(4442, "marco", "ehab", "macr@gmail.com", "01212323","Koko","23 sherton");
+
+	Person1.Print();
+
+	Person1.SendEmail("Hello", "I hope you're well");
+	Person1.SendSms("Please Call me");
+}

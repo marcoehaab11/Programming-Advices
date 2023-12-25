@@ -1,0 +1,36 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class clsPerson 
+{
+    public:
+    int var; 
+    static int counter;
+
+    clsPerson()
+    {
+        counter++;
+    }
+    void Print()
+    {
+        cout<<"The Vaule   is :"<<var<<endl;
+        cout<<"The counter is :"<<counter<<endl;
+    }
+ 
+};
+
+int clsPerson::counter=0;
+
+int main() 
+{
+       clsPerson A1,A2,A3;
+       A1.var=10;
+       A2.var=20;
+       A3.var=30;
+        A1.Print();
+        A2.Print();
+        A3.Print();
+        return 0;
+}

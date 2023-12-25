@@ -1,0 +1,46 @@
+#include <iostream>
+using namespace std;
+
+class clsA
+{ private:
+    int _var1=10;
+    public:
+    int a,b,c;
+    
+    clsA(int a,int b,int c)
+    {
+        this->a=a;
+        this->b=b;
+        this->c=c;
+    }
+    
+    void printsum()
+    {cout<< a+b+c; }
+
+
+    static void fun1(clsA A)
+    {
+        A.printsum();
+    }
+    void fun2()
+    {
+        fun1(*this);
+    }
+
+
+
+
+};
+
+
+
+
+int main()
+{
+    clsA A(10,20,30);
+    A.fun2();
+    
+    
+    system("pause>0");
+    return 0;
+}
