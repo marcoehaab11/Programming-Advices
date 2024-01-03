@@ -1,0 +1,205 @@
+#include <iostream>
+using namespace std;
+
+class Util
+{
+    private:
+    
+    
+    
+    public:
+    static void SRand()
+    {
+        srand((unsigned)time(NULL));
+    }
+ static int RandomNumber(int From,int To)
+    {
+    int RandomNum=rand()%(To-From+1) +From;
+    return RandomNum;
+    }
+    
+ enum enCharType{SmallLetter=1,CapitalLetter=2,SpecialLetter=3,Digit=4};
+ 
+ static  char RandomCharacher(enCharType CharType)
+    {
+    
+    switch(CharType)
+    {
+    case enCharType::SmallLetter:
+    {
+        return char(RandomNumber(97,122));
+        break;
+    }
+    case enCharType::CapitalLetter:
+    {
+        return char(RandomNumber(65,90));
+        break;
+    }
+    case enCharType::SpecialLetter:
+    {
+         return char(RandomNumber(33,47));
+        break;
+    }
+        case enCharType::Digit:
+    {
+         return char(RandomNumber(48,57));
+        break;
+    }
+    }
+}       
+
+
+static string GenrateWord(enCharType CharType,short length)
+{   string word="";
+    for(int i =1;i<=length;i++)
+    {
+        word+=RandomCharacher(CharType);
+    }
+    return word;
+}
+static string GenrateKey()
+{   
+    string key="";
+    key=GenrateWord(enCharType::CapitalLetter,4)+"-";
+    key+=GenrateWord(enCharType::CapitalLetter,4)+"-";
+    key+=GenrateWord(enCharType::CapitalLetter,4)+"-";
+    key+=GenrateWord(enCharType::CapitalLetter,4);
+    return key;
+}
+
+static void GeneationKeys(short NumberOfKeys)
+{
+    for(int i=1;i<=NumberOfKeys;i++)
+    {
+        cout<<"Key ["<<i<<"] : "<<GenrateKey()<<endl;
+    }
+    
+}
+
+ static void FillArrayWithRandomNumber(int arr[100],int& arrlength)
+{
+     for(int i;i<arrlength;i++)
+     {
+         arr[i]=RandomNumber(-100,100);
+     }
+ }
+  static void FillArrayWithRandomWords(string arr[100],int& arrlength)
+{
+     for(int i=0;i<arrlength;i++)
+     {
+         arr[i]=GenrateKey();
+     }
+     for(int i=0;i<arrlength;i++)
+    {
+        cout<<arr[i]<<endl;
+    }
+ }
+    
+    static void swap(int& a, int& b)
+    {
+        int temp;
+        temp=b;
+        b=a;
+        a=temp;
+    }
+        
+    static void swap(float& a, float& b)
+    {
+        float temp;
+        temp=b;
+        b=a;
+        a=temp;
+    }
+        
+    static void swap(string& a, string& b)
+    {
+        string temp;
+        temp=b;
+        b=a;
+        a=temp;
+    }
+  static  void ShuffleArray(string arr[100],int arrlength)
+    {
+        for(int i=0;i<arrlength;i++)
+        {
+            swap(arr[RandomNumber(1,arrlength)-1],arr[RandomNumber(1,arrlength)-1]);
+        }
+    }
+static    void ShuffleArray(int arr[100],int arrlength)
+    {
+        for(int i=0;i<arrlength;i++)
+        {
+            swap(arr[RandomNumber(1,arrlength)-1],arr[RandomNumber(1,arrlength)-1]);
+        }
+    }
+static string Taps(short NumberOfTabs)
+    {
+        string t="";
+        for (int i=0;i<NumberOfTabs;i++)
+        {
+            t+="\t";
+        }
+        return t;
+    }
+    
+static string EncryptText(string text,short key)
+    {
+        for(int i=0;i<text.length();i++)
+        {
+            text[i]=char((int)text[i]+key);
+        }
+        return text;
+    }
+
+static string DecryptText(string text,short key)
+    {
+        for(int i=0;i<text.length();i++)
+        {
+            text[i]=char ((int)text[i]-key);
+        }
+        return text;
+    }
+};
+
+int main() {
+ Util::SRand();
+    
+  string arr[100];
+    int arrlength=10;
+    Util::GeneationKeys(arrlength);
+    cout<<Util::RandomNumber(10,50);
+   
+    int a=15,b=10;
+    Util::swap(a,b);
+    cout<<"int // a ="<<a<<" b= "<<b<<endl;
+    
+    float m=15.5,w=10.9;
+    Util::swap(m,w);
+    cout<<"flaot // a ="<<m<<" b= "<<w<<endl;
+    
+    
+    string st1="test1",st2="test2";
+    Util::swap(st1,st2);
+    cout<<"flaot // st1 ="<<st1<<" st2 = "<<st2<<endl;
+    
+    string a1[100]={"marco","ehab","lolo","nemo","lolo","dude","nemo","lolo","dude","lllooo"};
+    int ar2[100]={1,2,3,4,5,6,7,8,9,10};
+    
+    Util::ShuffleArray(a1,10);
+    Util::ShuffleArray(ar2,10);
+
+    
+  cout<<"this is taps "<<Util::Taps(5)<<"end of taps \n";
+  
+  string text="marco";
+  string after=Util::EncryptText(text,10);
+  cout<<after<<endl;
+  
+   after=Util::DecryptText(after,10);
+   cout<<after<<endl;
+    
+    
+    
+    return 0;
+    
+}
