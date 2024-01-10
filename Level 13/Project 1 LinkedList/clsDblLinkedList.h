@@ -91,7 +91,14 @@ class clsDblLinkedList
         Node* newNode=new Node();
         newNode->value=value;
         newNode->next=NULL;
-
+        
+        if(head==NULL)
+        {
+            newNode->prev=NULL;
+            head=newNode;
+        }
+        else
+        {
         Node* current=head;
          while(current->next!=NULL)
          {
@@ -99,6 +106,7 @@ class clsDblLinkedList
          } 
          current->next=newNode;
          newNode->prev=current;
+        }
          _size++;
     }
     
@@ -166,12 +174,31 @@ class clsDblLinkedList
         delete temp;
         _size--;
     }
- //Clear
- {
- while(_size>0)
-   {
-DeleteLastNode();
-  }
+    //Clear
+    
+    void Clear()
+    {
+        while (_size > 0)
+        {
+            DeleteFirstNode();
+        }
+    }
+    //Reverse
+    void  Reverse()
+    {
+        Node* current = head;
+        Node* temp = nullptr;
+        while (current != nullptr) {
+            temp = current->prev;
+            current->prev = current->next;
+            current->next = temp;
+            current = current->prev;
+        }
+
+        if (temp != nullptr) {
+            head = temp->prev;
+        }
+    }
     //GetNode
     Node* GetNode(short Index)
     {
@@ -211,22 +238,6 @@ DeleteLastNode();
     short Size()
     {
         return _size;
-    }
-  //Reverse
-    void  Reverse()
-    {
-        Node* current = head;
-        Node* temp = nullptr;
-        while (current != nullptr) {
-            temp = current->prev;
-            current->prev = current->next;
-            current->next = temp;
-            current = current->prev;
-        }
-
-        if (temp != nullptr) {
-            head = temp->prev;
-        }
     }
     //Update
     bool Update(short Index,T value)
